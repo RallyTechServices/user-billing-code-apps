@@ -196,9 +196,7 @@ Ext.define("TSBillCodeUpdater", {
                 if ( attr.ReadOnly) {
                     return false;
                 }
-                
-                console.log(field.name, attr);
-                
+                                
                 return ( /* attr.Custom && */
                     !_.contains(['web_link', 'text', 'date', 'boolean'], attr.AttributeType.toLowerCase()) );
             }

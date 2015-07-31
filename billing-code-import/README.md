@@ -1,20 +1,27 @@
-#Billing Code Updater
+#Billing Code Importer
 
-This is a quick and easy mechanism for adding user billing codes. The
-app will provide a summary of the total number of users and the total number
-who do not have a billing code.  A grid displays the users without a code and
-allows for entry of a code for a user.
+This is a quick and easy mechanism for importing user billing codes. The app
+provides a text box for the user to copy in a set of rows that are comma-separated
+pairs of user names and billing codes.  The app will trim the white space from both.
 
-The "billing code" column is a field that's chosen by the person installing
+The "billing code" is a field that's chosen by the person installing
 the app (in Edit App Settings...) and is a field on the user object, so to
 change the value, a user must have admin rights.  AND a workspace administrator
 will not be able to set the code for a Subscription Administrator.
 
 ## Development Notes
 
-This assumes a relatively small user base because the store loads twice (once
-before the filter is applied (to see how many total users there are) and once
-after the filter is applied).  
+All of the active users in the sub are loaded before the app launches so that
+we can check to see if the user exists before running.  It might be that this
+will be a performance hit.  If the customer intends to only load five or six
+at a time, then it's reasonable to wait until running through to check user
+existence, but if they want to push up a hundred, then it makes more sense to
+run as this is written now.
+
+The input box (text area) will perform two validations and won't let the Submit
+button appear if there is something "wrong" with the data in the field.  (It
+checks to see that every line is either blank or has a comma separated pair AND
+that every user name has an @ sign.
 
 ### First Load
 
