@@ -1,6 +1,21 @@
 #Billing Code Reporter
 
+This is a quick and easy mechanism for reviewing user billing codes. The app
+provides a summary showing counts of users with each billing code and a detail
+showing sections for each user in each code.
+
+The "billing code" is a field that's chosen by the person installing
+the app (in Edit App Settings...) and is a field on the user object.
+
 ## Development Notes
+
+This app uses code stolen from the toggle button used by the gridboard to
+allow the display to switch from Summary to Detail view and back.  Both 
+summary and detail are calculated up front.  The toggle shouts out the state
+of 'detail' or 'summary' in the event 'toggle.'  The containers holding summary
+and detail are named '{}_box' so that they can be easily shown.  There is a fake
+value called toggleable so that we can hide all the containers at once but only
+the once that might get toggled.
 
 ### First Load
 
