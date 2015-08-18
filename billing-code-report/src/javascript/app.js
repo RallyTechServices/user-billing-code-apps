@@ -146,7 +146,10 @@ Ext.define("TSBillingCodeReport", {
         var model_name = 'User',
             field_names = ['UserName','FirstName','LastName','ObjectID',this.getSetting('billingFieldName')],
             sorters = [{property:'LastName'}],
-            filters = [{property:me.getSetting('billingFieldName'), operator: '!=', value: '' }];
+            filters = [
+                {property:me.getSetting('billingFieldName'), operator: '!=', value: '' },
+                {property:'Disabled', operator: '!=', value: true}
+            ];
         
         return this._loadRecordsWithAPromise(model_name, field_names, filters, sorters);
     },

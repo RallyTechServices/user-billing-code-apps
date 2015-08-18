@@ -3,11 +3,11 @@
 <head>
     <title>Billing Code Reporter</title>
     <!--  (c) 2015 Rally Software Development Corp.  All Rights Reserved. -->
-    <!--  Build Date: Mon Aug 17 2015 20:16:22 GMT-0700 (PDT) -->
+    <!--  Build Date: Tue Aug 18 2015 16:11:39 GMT-0700 (PDT) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Mon Aug 17 2015 20:16:22 GMT-0700 (PDT)";
-        var CHECKSUM = 4829664266;
+        var APP_BUILD_DATE = "Tue Aug 18 2015 16:11:39 GMT-0700 (PDT)";
+        var CHECKSUM = 4872638396;
     </script>
     
     <script type="text/javascript" src="/apps/2.0/sdk.js"></script>
@@ -407,7 +407,10 @@ Ext.define("TSBillingCodeReport", {
         var model_name = 'User',
             field_names = ['UserName','FirstName','LastName','ObjectID',this.getSetting('billingFieldName')],
             sorters = [{property:'LastName'}],
-            filters = [{property:me.getSetting('billingFieldName'), operator: '!=', value: '' }];
+            filters = [
+                {property:me.getSetting('billingFieldName'), operator: '!=', value: '' },
+                {property:'Disabled', operator: '!=', value: true}
+            ];
         
         return this._loadRecordsWithAPromise(model_name, field_names, filters, sorters);
     },

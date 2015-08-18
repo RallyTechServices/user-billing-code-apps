@@ -3,10 +3,10 @@
 <head>
     <title>Billing Code Reporter</title>
     <!--  (c) 2015 Rally Software Development Corp.  All Rights Reserved. -->
-    <!--  Build Date: Mon Aug 17 2015 20:16:22 GMT-0700 (PDT) -->
+    <!--  Build Date: Tue Aug 18 2015 16:11:39 GMT-0700 (PDT) -->
     
     <script type="text/javascript">
-        var APP_BUILD_DATE = "Mon Aug 17 2015 20:16:22 GMT-0700 (PDT)";
+        var APP_BUILD_DATE = "Tue Aug 18 2015 16:11:39 GMT-0700 (PDT)";
         var CHECKSUM = [%= checksum %];
     </script>
     
