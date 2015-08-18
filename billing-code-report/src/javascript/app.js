@@ -119,7 +119,11 @@ Ext.define("TSBillingCodeReport", {
                 tpl:'<tpl>Number of users for billing code {code}: {count}</tpl>'}
             ).update({'code':code,'count':users.length});
             
-            var store = Ext.create('Rally.data.custom.Store',{data:users});
+            var store = Ext.create('Rally.data.custom.Store',{
+                data:users,
+                pageSize: 5000,
+                limit:5000
+            });
         
             container.add({
                 xtype:'rallygrid',
@@ -141,7 +145,7 @@ Ext.define("TSBillingCodeReport", {
         
         var model_name = 'User',
             field_names = ['UserName','FirstName','LastName','ObjectID',this.getSetting('billingFieldName')],
-            sorters = [{property:'UserName'}],
+            sorters = [{property:'LastName'}],
             filters = [{property:me.getSetting('billingFieldName'), operator: '!=', value: '' }];
         
         return this._loadRecordsWithAPromise(model_name, field_names, filters, sorters);
@@ -156,7 +160,8 @@ Ext.define("TSBillingCodeReport", {
             model: model_name,
             fetch: model_fields,
             sorters: sorters,
-            filters: filters
+            filters: filters,
+            limit: 'Infinity'
         }).load({
             callback : function(records, operation, successful) {
                 if (successful){
@@ -179,7 +184,8 @@ Ext.define("TSBillingCodeReport", {
             model: model_name,
             fetch: model_fields,
             sorters: sorters,
-            filters: filters
+            filters: filters,
+            limit: 'Infinity'
         }).load({
             callback : function(records, operation, successful) {
                 if (successful){
@@ -200,17 +206,6 @@ Ext.define("TSBillingCodeReport", {
             {dataIndex: 'LastName',text:'Last Name'},
             {dataIndex: this.getSetting('billingFieldName'), text:'Billing Code'}
         ];
-    },
-    
-    _displayGrid: function(store){
-        var container = this.down('#grid_box');
-        container.removeAll();
-        container.add({
-            xtype: 'rallygrid',
-            store: store,
-            showRowActionsColumn: false,
-            columnCfgs: this._getColumns()
-        });
     },
     
     getOptions: function() {
